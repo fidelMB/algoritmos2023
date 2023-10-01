@@ -52,8 +52,22 @@ public:
  
     void add(T data, int p) {
         Node<T> *new_node = new Node<T>(data, p);
-    
+        if (head == nullptr) {
+            head = new_node;
+            tail = new_node;
+        }
+        else {
+            Node<T> *current = tail;
+            while (current != nullptr) {
+                if () {
+                    
+                }
+
+                current = current->previous;
+            }
+        }
     }
+    
     void remove()
     {
         if (head == nullptr) {
