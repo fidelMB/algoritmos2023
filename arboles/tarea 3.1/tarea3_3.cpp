@@ -31,6 +31,7 @@ typedef Nodo* NodoPtr;
 class ArbolBiselado {
 private:
     NodoPtr raiz;
+    int tamanio = 0;
  
     /*
     * find, búsqueda de un nodo en el árbol
@@ -101,16 +102,14 @@ private:
     }
     
     /*
-    * print, imprime el árbol
+    * printIp, imprime una ip
     * 
-    * Imprime todos los nodos del árbol en la terminal con un formato especial
+    * Le da el formato correcto a una ip para imprimirla en la terminal con la ayuda de un stack
     * 
-    * @param raiz: raiz del árbol
-    * @param relleno: strings para dar formato al árbol en la terminal
-    * @param ultimo: booleano para saber si es el último nodo de la rama
-    * @return: se imprime el árbol en la terminal
-    * Complejidad tiempo: O(n)
-    * Complejidad espacio: O(n)
+    * @param value: ip a imprimir
+    * @return: se imprime la ip en la terminal
+    * Complejidad tiempo: O(1)
+    * Complejidad espacio: O(1)
     */   
     void printIp(long long value) {
         string valorAImprimir = "";
@@ -167,6 +166,17 @@ private:
         }
     }
 
+    /*
+    * rotarIzquierda, operación zig en un árbol
+    * 
+    * El hijo izquierdo del nodo se convierte en el nuevo padre, el hijo derecho del nuevo padre 
+    * se convierte en el hijo izquierdo del padre anterior.
+    * 
+    * @param nodo: nodo a rotar
+    * @return: no tiene
+    * Complejidad tiempo: O(1)
+    * Complejidad espacio: O(1)
+    */   
     void rotarIzquierda(NodoPtr nodo) {
         NodoPtr y = nodo->derecho;
         nodo->derecho = y->izquierdo;
@@ -187,6 +197,17 @@ private:
         nodo->progenitore = y;
     }
 
+    /*
+    * rotarDerecha, operación zag en un árbol
+    * 
+    * El hijo derecho del nodo se convierte en el nuevo padre, el hijo izquierdo del nuevo padre 
+    * se convierte en el hijo derecho del padre anterior.
+    * 
+    * @param nodo: nodo a rotar
+    * @return: no tiene
+    * Complejidad tiempo: O(1)
+    * Complejidad espacio: O(1)
+    */   
     void rotarDerecha(NodoPtr nodo) {
         NodoPtr y = nodo->izquierdo;
         //y es igual al hijo izquierdo
@@ -217,6 +238,18 @@ private:
         nodo->progenitore = y;
     }
 
+    /*
+    * biselar, se bisela un nodo hasta la raíz del árbol
+    * 
+    * Un nodo se bisela hasta llegar a la raíz. La biselación se logra con las operaciones
+    * rotarDerecha y rotarIzquierda, que pueden biselarlo de las maneras:  zig, zag, zig-zag, zag-zig, 
+    * zig-zig y zag-zag.
+    * 
+    * @param nodo: nodo a biselar
+    * @return: no tiene
+    * Complejidad tiempo: O(log(n))
+    * Complejidad espacio: O(1)
+    */      
     void biselar(NodoPtr nodo) {
         while (nodo->progenitore) {
             if (!nodo->progenitore->progenitore) {
@@ -252,6 +285,17 @@ private:
         }
     }
 
+    /*
+    * une, une dos subárboles después de borrar un nodo
+    * 
+    * Se utiliza para unir dos subárboles después de borrar un nodo, se bisela el nodo de valor más grande
+    * 
+    * @param s: primer subárbol
+    * @param t: segundo subárbol
+    * @return: NodoPtr, nuevo nodo raíz
+    * Complejidad tiempo: O(log(n))
+    * Complejidad espacio: O(1)
+    */      
     NodoPtr une(NodoPtr s, NodoPtr t) {
         if (!s) {
             return t;
@@ -365,6 +409,7 @@ public:
         }
         //Biselar el nodo hasta la raíz
         biselar(nodo);
+        tamanio++;
     }
 
     /*
@@ -383,18 +428,41 @@ public:
         del(this->raiz, ip);
     }
 
+    /*
+    * print, imprime el árbol
+    * 
+    * Imprime todos los nodos del árbol en la terminal con un formato especial
+    * 
+    * @param: no tiene
+    * @return: se imprime el árbol en la terminal
+    * Complejidad tiempo: O(n)
+    * Complejidad espacio: O(n)
+    */   
     void printArbol() {
         print(this->raiz, "", true);
+    }
+
+    /*
+    * size, regresa la cantidad de nodos dentro del árbol
+    * 
+    * regresa el atributo tamanio de la clase, que indica la cantidad de nodos del árbol
+    * 
+    * @param: no tiene
+    * @return: entero que indica la cantidad de nodos que contiene al árbol
+    * Complejidad tiempo: O(1)
+    * Complejidad espacio: O(1)
+    */
+    int size() {
+        return tamanio;
     }
 
 };
 
 int main() {
-    setlocale(LC_ALL, "es_ES.UTF-8");
-
     ArbolBiselado bst;
     bst.insert(333333333);
     bst.insert(44);
+
     bst.insert(64444447);
     bst.insert(62222229);
     bst.insert(4294967295);
