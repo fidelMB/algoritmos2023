@@ -8,7 +8,7 @@ using namespace std;
 
 class priorityQueue {
 public:
-    int heapArray[1000];
+    int heapArray[15];
     int size = 0;
 
     priorityQueue() {
@@ -23,7 +23,7 @@ public:
     * @param value: dato a insertar
     * @return: no tiene
     * Complejidad tiempo: O(log(n))
-    * Complejidad espacio: O(1)
+    * Complejidad espacio: O(n)
     */
     void push(int value) {
             heapArray[size] = value;
@@ -42,7 +42,7 @@ public:
     * @param: no tiene
     * @return: no tiene
     * Complejidad tiempo: O(log(n))
-    * Complejidad espacio: O(1)
+    * Complejidad espacio: O(n)
     */
     void pop() {
         
@@ -126,7 +126,7 @@ public:
     * @param rootIndex: índice del último nodo que tiene por lo menos un hijo
     * @return: no tiene
     * Complejidad tiempo: O(log(n))
-    * Complejidad espacio: O(1)
+    * Complejidad espacio: O(n)
     */
     void swiftUp(int rootIndex) {
         int max = rootIndex;
@@ -156,7 +156,7 @@ public:
     * @param rootIndex: índice del nodo con mayor prioridad
     * @return: no tiene
     * Complejidad tiempo: O(log(n))
-    * Complejidad espacio: O(1)
+    * Complejidad espacio: O(n)
     */
     void swiftDown(int rootIndex) {
         int max = rootIndex;
@@ -214,33 +214,123 @@ public:
 
 int main()
 {
-    priorityQueue *listaPrioridadHeap = new priorityQueue();
-    listaPrioridadHeap->push(5);
-    listaPrioridadHeap->push(7);
-    listaPrioridadHeap->push(8);
-    listaPrioridadHeap->push(9);
-    listaPrioridadHeap->push(10);
-    listaPrioridadHeap->push(12);
-    listaPrioridadHeap->push(5);
-    listaPrioridadHeap->push(14);
-    listaPrioridadHeap->push(11);
-    listaPrioridadHeap->print();
+    // heap 1
+    priorityQueue *listaPrioridadHeap1 = new priorityQueue();
+    cout << "HEAP 1:" << endl;
 
-    listaPrioridadHeap->pop();
-    listaPrioridadHeap->print();
-    listaPrioridadHeap->pop();
-    listaPrioridadHeap->print();
-    listaPrioridadHeap->pop();
-    listaPrioridadHeap->print();
-    listaPrioridadHeap->pop();
-    listaPrioridadHeap->print();
-    listaPrioridadHeap->pop();
-    listaPrioridadHeap->print();
-    listaPrioridadHeap->pop();
- 
+    // empty
+    cout << "empty: " << listaPrioridadHeap1->empty() << endl;
 
-    listaPrioridadHeap->print();
-    listaPrioridadHeap->print(7);
+    // push
+    listaPrioridadHeap1->push(5);
+    listaPrioridadHeap1->push(3);
+    listaPrioridadHeap1->push(26);
+    listaPrioridadHeap1->push(15);
+    listaPrioridadHeap1->push(25);
+    listaPrioridadHeap1->push(25);
 
+
+    // pop
+    listaPrioridadHeap1->pop();
+
+    // top
+    cout << "top: " << listaPrioridadHeap1->top() << endl;
+
+    // empty
+    cout << "empty: " << listaPrioridadHeap1->empty() << endl;
+
+    // size
+    cout << "size: " << listaPrioridadHeap1->Size() << endl;
+
+    listaPrioridadHeap1->print();
+
+    // heap 2
+    priorityQueue *listaPrioridadHeap2 = new priorityQueue();
+    cout << "\nHEAP 2:" << endl;
+
+    // empty
+    cout << "empty: " << listaPrioridadHeap2->empty() << endl;
+
+    // push
+    listaPrioridadHeap2->push(11);
+    listaPrioridadHeap2->push(-12);
+    listaPrioridadHeap2->push(-12);
+    listaPrioridadHeap2->push(13);
+    listaPrioridadHeap2->push(14);
+    listaPrioridadHeap2->push(3);
+    listaPrioridadHeap2->push(13);
+
+    // pop
+    listaPrioridadHeap2->pop();
+
+    // top
+    cout << "top: " << listaPrioridadHeap2->top() << endl;
+
+    // empty
+    cout << "empty: " << listaPrioridadHeap2->empty() << endl;
+
+    // size
+    cout << "size: " << listaPrioridadHeap2->Size() << endl;
+
+    listaPrioridadHeap2->print();
+
+    // heap 3
+    priorityQueue *listaPrioridadHeap3 = new priorityQueue();
+    cout << "\nHEAP 3:" << endl;
+
+    // empty
+    cout << "empty: " << listaPrioridadHeap3->empty() << endl;
+
+    // push
+    listaPrioridadHeap3->push(1);
+    listaPrioridadHeap3->push(1);
+    listaPrioridadHeap3->push(2);
+    listaPrioridadHeap3->push(2);
+    listaPrioridadHeap3->push(3);
+    listaPrioridadHeap3->push(3);
+    listaPrioridadHeap3->push(0);
+    listaPrioridadHeap3->push(0);
+
+    // pop
+    listaPrioridadHeap3->pop();
+
+    // top
+    cout << "top: " << listaPrioridadHeap3->top() << endl;
+
+    // empty
+    cout << "empty: " << listaPrioridadHeap3->empty() << endl;
+
+    // size
+    cout << "size: " << listaPrioridadHeap3->Size() << endl;
+
+    listaPrioridadHeap3->print();
+
+    // heap 4
+    priorityQueue *listaPrioridadHeap4 = new priorityQueue();
+    cout << "\nHEAP 4:" << endl;
+
+    // empty
+    cout << "empty: " << listaPrioridadHeap4->empty() << endl;
+
+    // push
+    listaPrioridadHeap4->push(111);
+    listaPrioridadHeap4->push(222);
+    listaPrioridadHeap4->push(56);
+    listaPrioridadHeap4->push(78);
+    listaPrioridadHeap4->push(0);
+
+    // pop
+    listaPrioridadHeap4->pop();
+
+    // top
+    cout << "top: " << listaPrioridadHeap4->top() << endl;
+
+    // empty
+    cout << "empty: " << listaPrioridadHeap4->empty() << endl;
+
+    // size
+    cout << "size: " << listaPrioridadHeap4->Size() << endl;
+
+    listaPrioridadHeap4->print();
 
 }
