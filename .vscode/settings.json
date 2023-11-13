@@ -1,17 +1,13 @@
 {
     "files.associations": {
-        "iostream": "cpp",
-        "ostream": "cpp",
         "*.tcc": "cpp",
-        "optional": "cpp",
-        "ratio": "cpp",
-        "system_error": "cpp",
-        "array": "cpp",
-        "functional": "cpp",
-        "regex": "cpp",
-        "tuple": "cpp",
-        "type_traits": "cpp",
-        "utility": "cpp",
-        "variant": "cpp"
+        "deque": "cpp",
+        "forward_list": "cpp",
+        "list": "cpp",
+        "string": "cpp",
+        "vector": "cpp",
+        "valarray": "cpp",
+        "iostream": "cpp",
+        "ostream": "cpp"
     }
 }

@@ -60,7 +60,7 @@ void merge(vector<message>& v, int l, int r) {
 	// Ciclo para crear el subvector derecho
 
     while (lIndex < lSize && rIndex < rSize) {
-        if (leftV[lIndex].ip > rightV[rIndex].ip) {
+        if (leftV[lIndex].ip < rightV[rIndex].ip) {
             v[vIndex] = leftV[lIndex];
             lIndex++;
         }

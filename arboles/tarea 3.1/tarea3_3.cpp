@@ -1,9 +1,7 @@
 /*  
 Act 3.3 - Árbol Desplegado: Implementando un Splay Tree
 Fidel Morales Briones A01198630
-19 de octubre de 2023
-Referencias: http://algorithmtutor.com/ip-Structures/Tree/Splay-Trees/
-https://www.geeksforgeeks.org/introduction-to-splay-tree-data-structure/
+17 de octubre de 2023
 */
 #include <iostream>
 #include <locale.h>
@@ -50,7 +48,6 @@ private:
         }
 
         if (ip < nodo->ip) {
-    
             return find(nodo->izquierdo, ip);
         }
         return find(nodo->derecho, ip);
@@ -290,8 +287,8 @@ private:
     * 
     * Se utiliza para unir dos subárboles después de borrar un nodo, se bisela el nodo de valor más grande
     * 
-    * @param s: primer subárbol
-    * @param t: segundo subárbol
+    * @param s: nodo del subárbol izquierdo
+    * @param t: nodo del subárbol derecho
     * @return: NodoPtr, nuevo nodo raíz
     * Complejidad tiempo: O(log(n))
     * Complejidad espacio: O(1)
@@ -311,6 +308,19 @@ private:
         return x;
     }
 
+    /*
+    * divide, se divide el árbol en dos subárboles
+    * 
+    * Se utiliza cuando se elimina un nodo del árbol, se bisela el nodo hasta la raíz y se eliminan los enlaces
+    * para dejar dos subárboles
+    * 
+    * @param x: nodo a borrar
+    * @param s: nodo del subárbol izquierdo
+    * @param t: nodo del subárbol derecho
+    * @return: no tiene
+    * Complejidad tiempo: O(log(n))
+    * Complejidad espacio: O(n)
+    */ 
     void divide(NodoPtr& x, NodoPtr& s, NodoPtr& t) {
         biselar(x);
         if (x->derecho) {
@@ -351,20 +361,22 @@ public:
         return x;
     }
 
-    // NodoPtr minimo(NodoPtr nodo) {
-    //     while (nodo->izquierdo != nullptr) {
-    //         nodo = nodo->izquierdo;
-    //     }
-    //     return nodo;
-    // }
-
+    /*
+    * maximo, encuentra el nodo con valor máximo del árbol
+    * 
+    * Se realiza una búsqueda binaria hasta encontrar el nodo máximo del árbol
+    * 
+    * @param nodo: nodo raíz del árbol
+    * @return: NodoPtr, nodo encontrado
+    * Complejidad tiempo: O(log(n))
+    * Complejidad espacio: O(1)
+    */  
     NodoPtr maximo(NodoPtr nodo) {
         while (nodo->derecho != nullptr) {
             nodo = nodo->derecho;
         }
         return nodo;
     }
-
     
     /*
     * insert, inserta un nuevo nodo al árbol
@@ -426,6 +438,7 @@ public:
     */    
     void del(long long ip) {
         del(this->raiz, ip);
+        tamanio--;
     }
 
     /*
@@ -459,30 +472,117 @@ public:
 };
 
 int main() {
-    ArbolBiselado bst;
-    bst.insert(333333333);
-    bst.insert(44);
+    // splay tree 1
+    ArbolBiselado bst1;
+    cout << "Splay Tree 1:" << endl;
 
-    bst.insert(64444447);
-    bst.insert(62222229);
-    bst.insert(4294967295);
-    bst.insert(2);
-    bst.insert(89);
-    bst.insert(41);
-    bst.insert(98);
-    bst.insert(1);
-    bst.printArbol();
-    bst.find(4294967295);
-    bst.printArbol();
-    bst.find(44);
-    bst.printArbol();
-    bst.del(333333333);
-    bst.printArbol();
-    bst.del(41);
-    bst.printArbol();
-    bst.del(98);
-    bst.del(1);
-    bst.del(44);
-    bst.printArbol();
+    // insert
+    bst1.insert(3232235778);
+    bst1.insert(3232235779);
+    bst1.insert(3232235780);
+    bst1.insert(123);
+    bst1.insert(41);
+    bst1.insert(1);
+    bst1.insert(43);
+
+    // print
+    bst1.printArbol();
+
+    // del
+    bst1.del(3232235778);
+
+    // find
+    cout << "Find: " << bst1.find(3232235779)->ip << endl;
+
+    // size
+    cout << "Size: " << bst1.size() << endl;
+
+    bst1.printArbol();
+
+    // splay tree 2
+    ArbolBiselado bst2;
+    cout << "\nSplay Tree 2:" << endl;
+
+    // insert
+    bst2.insert(542345);
+    bst2.insert(545454);
+    bst2.insert(11222);
+    bst2.insert(11);
+    bst2.insert(1);
+    bst2.insert(90);
+    bst2.insert(1043);
+
+    // print
+    bst2.printArbol();
+
+    // del
+    bst2.del(1);
+
+    // find
+    cout << "Find: " << bst2.find(11)->ip << endl;
+
+    // size
+    cout << "Size: " << bst2.size() << endl;
+
+    bst2.printArbol();
+
+    // splay tree 3
+    ArbolBiselado bst3;
+    cout << "\nSplay Tree 3:" << endl;
+
+    // insert
+    bst3.insert(0001);
+    bst3.insert(0005);
+    bst3.insert(004);
+    bst3.insert(44);
+    bst3.insert(43);
+
+    // print
+    bst3.printArbol();
+
+    // del
+    bst3.del(004);
+
+    // find
+    cout << "Find: " << bst3.find(43)->ip << endl;
+
+    // size
+    cout << "Size: " << bst3.size() << endl;
+
+    bst3.printArbol();
+
+    // splay tree 4
+    ArbolBiselado bst4;
+    cout << "\nSplay Tree 4:" << endl;
+
+    // insert
+    bst4.insert(0001);
+    bst4.insert(0005);
+    bst4.insert(0001);
+    bst4.insert(0005); 
+    bst4.insert(561234);
+    bst4.insert(10897123);
+
+    // print
+    bst4.printArbol();
+
+    // del
+    bst4.del(0005);
+
+    // find
+    cout << "Find: " << bst4.find(0005)->ip << endl;
+
+    // size
+    cout << "Size: " << bst4.size() << endl;
+
+    bst4.printArbol();   
+
+
     return 0;
 }
+
+/*
+Bibliografía:
+GeeksforGeeks. (2023). Introduction to Splay Tree Data Structure. GeeksforGeeks. 
+https://www.geeksforgeeks.org/introduction-to-splay-tree-data-structure/
+*/
